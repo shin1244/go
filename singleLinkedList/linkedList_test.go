@@ -83,5 +83,12 @@ func TestLinkedList(t *testing.T) {
 	assert.Equal(t, []any{0, 1, 4, 5, 2}, l.ListToArray())
 
 	l.Reverse()
-	t.Log(l.ListToArray())
+	assert.Equal(t, []any{2, 5, 4, 1, 0}, l.ListToArray())
+
+	targetNode = l.GetAt(4)
+	l.Remove(targetNode)
+	assert.Equal(t, []any{2, 5, 4, 1}, l.ListToArray())
+
+	assert.Equal(t, 2, l.PopFront().Value)
+	assert.Equal(t, []any{5, 4, 1}, l.ListToArray())
 }
