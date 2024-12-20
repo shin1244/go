@@ -26,7 +26,7 @@ func TestRead(t *testing.T) {
 	assert.Equal(t, 0, buf.Readable())
 }
 
-func TestWriteAndRest(t *testing.T) {
+func TestWriteAndRead(t *testing.T) {
 	buf := NewSliceBuffer[byte]()
 	buf.Write([]byte{1, 2, 3, 4})
 	assert.Equal(t, 4, buf.Readable())
