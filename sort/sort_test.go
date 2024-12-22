@@ -8,12 +8,12 @@ import (
 )
 
 func TestQuickSort(t *testing.T) {
-	arr := make([]int, 10)
-	for i := 0; i < 10; i++ {
+	arr := make([]int, 100)
+	for i := 0; i < 100; i++ {
 		arr[i] = rand.Intn(100)
 	}
 
-	assert.False(t, IsSorted(arr))
+	assert.False(t, IsSorted(arr), arr)
 	QuickSort(arr)
 	assert.True(t, IsSorted(arr))
 }
