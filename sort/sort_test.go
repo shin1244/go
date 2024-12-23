@@ -17,3 +17,14 @@ func TestQuickSort(t *testing.T) {
 	QuickSort(arr)
 	assert.True(t, IsSorted(arr))
 }
+
+func TestMergeSort(t *testing.T) {
+	arr := make([]int, 100)
+	for i := 0; i < 100; i++ {
+		arr[i] = rand.Intn(100)
+	}
+
+	assert.False(t, IsSorted(arr))
+	sorted := MergeSort(arr)
+	assert.True(t, IsSorted(sorted), arr)
+}
