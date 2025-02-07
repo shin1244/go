@@ -6,17 +6,16 @@ import (
 )
 
 func main() {
-	wg.Add(10)
-	account := &Account{1}
+	var jobList [10]job
 	for i := 0; i < 10; i++ {
-		go func() {
-			for {
-				DepositAndWithdraw(account)
-			}
-			wg.Done()
-		}()
+		jobList[i] = &SquareJob{index: i}
 	}
 
+	wg.Add(10)
+	for i := 0; i < 10; i++ {
+		go jobList[i].Do()
+
+	}
 	wg.Wait()
 }
 
