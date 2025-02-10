@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"tidy/interface/dog"
+	"tidy/interface/duck"
 )
 
 type Animal interface {
@@ -14,6 +14,6 @@ func speakAnimal(animal Animal) {
 }
 
 func main() {
-	cat := &dog.Dog{Name: "Whiskers", Age: 2}
+	cat := &duck.Duck{Name: "Whiskers", Age: 2}
 	speakAnimal(cat)
 }
