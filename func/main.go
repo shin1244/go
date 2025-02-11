@@ -6,6 +6,11 @@ import (
 )
 
 type opfn[T ~int | ~float64] func(i ...T) T
+type writer func(string)
+
+func writeHello(f writer) {
+	f("Hello, World!")
+}
 
 func sum[T ~int | ~float64](i ...T) T {
 	var sum T
@@ -53,4 +58,7 @@ func main() {
 	fmt.Println(op(1, 2, 3, 4, 5))
 	op = operator[int]("*")
 	fmt.Println(op(1, 2))
+	writeHello(func(s string) {
+		fmt.Println(s)
+	})
 }
