@@ -1,19 +1,21 @@
-package mergeSort
+package sort
 
 import "sync"
 
-func MergeSort(arr []int) []int {
+type MergeSort struct{}
+
+func (m *MergeSort) Sort(arr []int) []int {
 	if len(arr) <= 1 {
 		return arr
 	}
 	mid := len(arr) / 2
-	left := MergeSort(arr[:mid])
-	right := MergeSort(arr[mid:])
+	left := m.Sort(arr[:mid])
+	right := m.Sort(arr[mid:])
 
 	return merge(left, right)
 }
 
-func MergeSortUseThread(arr []int) []int {
+func (m *MergeSort) SortUseThread(arr []int) []int {
 	if len(arr) <= 1 {
 		return arr
 	}
@@ -23,17 +25,17 @@ func MergeSortUseThread(arr []int) []int {
 	wg.Add(2)
 	if mid > 10000 {
 		go func() {
-			left = MergeSortUseThread(arr[:mid])
+			left = m.Sort(arr[:mid])
 			wg.Done()
 		}()
 		go func() {
-			right = MergeSortUseThread(arr[mid:])
+			right = m.Sort(arr[mid:])
 			wg.Done()
 		}()
 		wg.Wait()
 	} else {
-		left = MergeSortUseThread(arr[mid:])
-		right = MergeSortUseThread(arr[mid:])
+		left = m.Sort(arr[:mid])
+		right = m.Sort(arr[mid:])
 	}
 
 	return merge(left, right)
